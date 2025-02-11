@@ -1,58 +1,28 @@
-Install-Package Microsoft.EntityFrameworkCore
-Install-Package Microsoft.EntityFrameworkCore.SqlServer
-Install-Package Microsoft.EntityFrameworkCore.Tools
+# StudentApp
 
- 
+StudentApp is a simple program that helps store information about students, like their name and age, in a database. It uses a technology called **Entity Framework Core** to manage the data in a SQL Server database.
 
-using System;
+## What Does It Do?
 
-public class Student
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public int Age { get; set; }
-}
+- It can **add a student** to the database with their **name** and **age**.
+- It uses **SQL Server** to store the information.
+- The program is built using **C#** and **Entity Framework Core**.
 
- 
+## How to Get Started
 
-using Microsoft.EntityFrameworkCore;
+### What You Need
 
-public class StudentContext : DbContext
-{
-    public DbSet<Student> Students { get; set; }
+To run this program on your computer, you need:
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=StudentDB;Trusted_Connection=True;");
-    }
-}
+1. **.NET 5 or higher** – This is the software used to run the program.
+2. **SQL Server** – This is where the student data is stored. You can use the free **LocalDB** if you don’t have SQL Server installed.
 
-using System;
+### Steps to Run the Program
 
-class Program
-{
-    static void Main()
-    {
-        using (var context = new StudentContext())
-        {
-            // Ensure database is created
-            context.Database.EnsureCreated();
+1. **Download or Clone the Project**
 
-            // Add a new student
-            var student = new Student { Name = "John Doe", Age = 20 };
-            context.Students.Add(student);
-            context.SaveChanges();
+   If you have a GitHub account, you can copy the project to your computer by using this command:
 
-            Console.WriteLine("Student added successfully!");
-        }
-    }
-}
-
-git init
-git add .
-git commit -m "Initial commit - Code-First EF Core Console App"
-
-git remote add origin <your-repository-url>
-git branch -M main
-git push -u origin main
-
+   ```bash
+   git clone <your-repository-url>
+   cd StudentApp
